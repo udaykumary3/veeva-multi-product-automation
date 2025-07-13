@@ -1,0 +1,124 @@
+# 🧪 Veeva Multi-Product Automation Framework
+
+This is a modular test automation framework built using **Java, Selenium, TestNG, Cucumber**, and **Allure Reporting**
+to test Veeva Core and Derived Products.
+
+---
+
+## 📁 Project Structure
+
+```
+veeva-multi-product-automation/
+│
+├── automation-framework/         # Common reusable framework code
+├── core-product-tests/           # Tests for core product
+├── derived-product1-tests/       # Tests for derived product 1
+├── derived-product2-tests/       # Tests for derived product 2
+├── pom.xml                       # Parent POM (manages dependencies and plugins)
+```
+
+---
+
+## ✅ Tech Stack
+
+| Tool          | Purpose                          |
+|---------------|----------------------------------|
+| Java 11       | Programming language             |
+| Selenium      | UI automation                    |
+| TestNG        | Test execution engine            |
+| Cucumber      | BDD and Gherkin feature support  |
+| Maven         | Build and dependency management  |
+| Allure        | Test reporting                   |
+| Log4j         | Logging                          |
+
+---
+
+## ⚙️ Configuration
+
+- `config.properties` should be in `src/main/resources` under `automation-framework`:
+  ```properties
+  browser=chrome
+  headless=false
+  incognito=false
+  ```
+
+---
+
+## 📌 How It Works
+
+- **Driver Management**: Thread-safe `DriverManager`.
+- **Config Management**: `ConfigReader` loads `config.properties`.
+- **BasePage**: Common Selenium page utilities.
+- **Hooks**: Cucumber hooks for setup, teardown, screenshots.
+- **Step Definitions**: Defined in `core-product-tests` and use `automation-framework` base classes.
+
+## ⚙️ Prerequisites
+
+- Java 11+
+- Maven 3.6+
+- Chrome browser
+- Allure CLI (for generating reports):  
+  👉 [Install Allure CLI](https://docs.qameta.io/allure/#_installing_a_commandline)
+
+---
+
+## 🚀 How to Run Tests
+
+```bash
+# Navigate to the test module (e.g., core-product-tests)
+cd core-product-tests
+
+# Run runner class
+mvn clean test
+```
+
+---
+
+## 📊 Generate Allure Report
+
+```bash
+# After tests have run, generate HTML report:
+Action: mvn allure:report
+# Open the report in browser
+mvn allure:serve
+```
+
+> ⚠️ Report will be empty unless test scenarios actually ran and generated data in `allure-results`.
+
+---
+
+## 🧾 Feature File Example
+
+```gherkin
+Feature: Core Product Tests - NBA Warriors Site
+
+  @Jackets
+  Scenario: Extract all Men’s Jackets details from the Shop
+    Given I am on the Core Product Home Page
+    When I navigate to the Shop Menu and select Men's section
+    And I scrape all Jacket items across all pages
+    Then I store Jacket price, title, and Top Seller message in a text file
+```
+
+---
+
+## 🧩 Tips
+
+- Attachments (like `.txt` files) are linked in Allure report under **Attachments**.
+- If using tags like `@Smoke`, uncomment the `tags = "@Smoke"` section in the `TestRunner`.
+
+---
+
+## 📂 Output Paths
+
+| Path                              | Description                    |
+|-----------------------------------|--------------------------------|
+| `target/allure-results/`          | Raw Allure test data           |
+| `target/allure-report/index.html` | Generated Allure report        |
+| `test-output/jackets.txt`         | Example scraped output         |
+
+---
+
+## 📃 Author
+
+UdayKumar Yakala — Automation QA Engineer

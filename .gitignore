@@ -1,0 +1,29 @@
+# Java & Maven
+target/
+*.class
+*.jar
+*.war
+*.ear
+
+# IntelliJ
+.idea/
+*.iml
+*.iws
+out/
+
+# Logs
+*.log
+
+# Allure
+allure-results/
+allure-report/
+
+# OS Specific
+.DS_Store
+Thumbs.db
+
+# Env
+.env
+
+.allure/
+
