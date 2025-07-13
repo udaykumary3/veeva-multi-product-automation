@@ -1,7 +1,11 @@
 # 🧪 Veeva Multi-Product Automation Framework
 
-This is a modular test automation framework built using **Java, Selenium, TestNG, Cucumber**, and **Allure Reporting**
-to test Veeva Core and Derived Products.
+This is a modular test automation framework built using **Java, Selenium, TestNG, Cucumber**, and **Allure Reporting**  
+to automate web flows for Veeva's Core and Derived Products.
+
+![Java](https://img.shields.io/badge/Java-11-blue)
+![Selenium](https://img.shields.io/badge/Selenium-Framework-success)
+![Allure](https://img.shields.io/badge/Allure-Reporting-orange)
 
 ---
 
@@ -33,16 +37,45 @@ veeva-multi-product-automation/
 
 ---
 
-## ⚙️ Configuration
+## 🧱 Modular Architecture (Multi-Module Maven)
 
-- `config.properties` should be in `src/main/resources` under `automation-framework`:
-  ```properties
-  browser=chrome
-  headless=false
-  incognito=false
-  ```
+- `automation-framework`: Shared reusable code (driver factory, hooks, base classes, config readers, utilities)
+- `core-product-tests`: Feature files, step defs, and pages specific to the **NBA Warriors** site
+- `derived-product1-tests`: Placeholder for NBA Sixers automation
+- `derived-product2-tests`: Placeholder for NBA Bulls automation
 
 ---
+
+## ✅ Test Cases Automated (Core Product)
+
+1. **Men’s Jackets Extraction**
+  - Navigate to Shop → Men’s
+  - Scrape all Jacket data: **title**, **price**, and **Top Seller** tag
+  - Store in a `.txt` file and attach to Allure report
+
+2. **New & Features Video Feed Count**
+  - Hover on menu and go to "New & Features"
+  - Count total video feeds
+  - Count how many are marked as **≥ 3d**
+
+---
+
+## ⚙️ Configuration
+
+A `config.properties` file is used to parameterize test settings. Place it in:
+```
+automation-framework/src/main/resources/config.properties
+```
+
+Example:
+```properties
+browser=chrome
+headless=false
+incognito=false
+```
+
+---
+
 
 ## 📌 How It Works
 
@@ -116,6 +149,13 @@ Feature: Core Product Tests - NBA Warriors Site
 | `target/allure-results/`          | Raw Allure test data           |
 | `target/allure-report/index.html` | Generated Allure report        |
 | `test-output/jackets.txt`         | Example scraped output         |
+
+---
+## 🧩 Tips
+
+- Text and CSV files are auto-attached to Allure reports using Hooks
+- Page Object Model is used for all locators and actions
+- No static waits used — explicit waits are handled via `WaitUtils`
 
 ---
 
